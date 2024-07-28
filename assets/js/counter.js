@@ -17,7 +17,7 @@
           options
         );
   
-        // how many times to update the value, and how much to increment the value on each update
+        // # to update the value, and value to increment on each time
         var loops = Math.ceil(settings.speed / settings.refreshInterval),
           increment = (settings.to - settings.from) / loops;
   
@@ -69,14 +69,14 @@
     };
   
     $.fn.countTo.defaults = {
-      from: 0, // the number the element should start at
-      to: 0, // the number the element should end at
+      from: 0, 
+      to: 0, 
       speed: 1000, // how long it should take to count between the target numbers
-      refreshInterval: 100, // how often the element should be updated
-      decimals: 0, // the number of decimal places to show
-      formatter: formatter, // handler for formatting the value before rendering
-      onUpdate: null, // callback method for every time the element is updated
-      onComplete: null // callback method for when the element finishes updating
+      refreshInterval: 100,
+      decimals: 0, 
+      formatter: formatter, 
+      onUpdate: null, 
+      onComplete: null 
     };
   
     function formatter(value, settings) {
@@ -94,7 +94,6 @@
       }
     });
 
-  
     // start all the timers
     $(".timer").each(count);
   

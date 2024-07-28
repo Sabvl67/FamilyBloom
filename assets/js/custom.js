@@ -9,7 +9,7 @@
 
     });
 
-
+	// Background changing while scrolling
 	$(window).scroll(function() {
 	  var scroll = $(window).scrollTop();
 	  var box = $('.header-text').height();
@@ -22,6 +22,7 @@
 	  }
 	})
 
+	//responsive handling (when the window is resized)
 	var width = $(window).width();
 		$(window).resize(function() {
 		if (width > 767 && $(window).width() < 767) {
@@ -31,7 +32,7 @@
 			location.reload();
 		}
 	})
-
+	//Isotope, organize the classes/event based on filter, selection
 	const elem = document.querySelector('.event_box');
 	const filtersElem = document.querySelector('.event_filter');
 	if (elem) {
@@ -55,7 +56,7 @@
 		}
 	}
 
-
+	// slider format
 	$('.owl-banner').owlCarousel({
 		center: true,
       items:1,
@@ -122,7 +123,7 @@
 	$(document).ready(function () {
 	    $(document).on("scroll", onScroll);
 	    
-	    //smoothscroll
+	    //make the scrolling smoother
 	    $('.scroll-to-section a[href^="#"]').on('click', function (e) {
 	        e.preventDefault();
 	        $(document).off("scroll");

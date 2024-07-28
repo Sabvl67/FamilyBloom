@@ -43,6 +43,7 @@ def get_tasks():
 @tasks_bp.route('/api/tasks/assign', methods=['POST'])
 def assign_tasks():
     assignments = distribute_tasks(tasks, family_members)
+    print("Assignments:", assignments)  # Print result to console
     return jsonify(assignments)
 
 def distribute_tasks(tasks, family_members):
@@ -62,6 +63,10 @@ def distribute_tasks(tasks, family_members):
         member_id = family_members[i]['id']
         assignments[member_id].append(tasks[len(tasks) - extra_tasks + i]['id'])
         tasks[len(tasks) - extra_tasks + i]['assignedTo'] = member_id
+
+    print("Task Assignments:")
+    for member_id, task_ids in assignments.items():
+        print(f"Member {member_id}: {task_ids}")
 
     return assignments
 
@@ -85,10 +90,18 @@ def defer_task():
             task['status'] = 'Assigned'
             break
 
+    print(f"Task {task_id} reassigned to Member {next_member['id']}")
+
+
     additional_tasks[member_id] += 1
     additional_tasks[next_member['id']] -= 1
 
-    rebalance_tasks(family_members)
+    assignments = rebalance_tasks(family_members)
+    print("Rebalanced Task Assignments:")
+    for member_id, task_ids in assignments.items():
+        print(f"Member {member_id}: {task_ids}")
+
+    db.session.commit()
     return jsonify({'message': 'Task deferred'}), 200
 
 def update_task_status(task_id, status):
@@ -123,3 +136,24 @@ def get_all_tasks():
 
 def get_all_family_members():
     return family_members
+
+
+# def main():
+#     print("Initial Tasks:")
+#     print(tasks)
+#     print("\nInitial Family Members:")
+#     print(family_members)
+
+#     # Assign tasks
+#     print("\nAssigning tasks...")
+#     distribute_tasks(tasks, family_members)
+
+#     # Simulate deferring a task
+#     task_id_to_defer = 1
+#     member_id_to_defer = 1
+#     print(f"\nDeferring Task {task_id_to_defer} from Member {member_id_to_defer}...")
+#     data = {'task_id': task_id_to_defer, 'member_id': member_id_to_defer}
+#     defer_task()  # You should simulate the request.get_json() here if you use it directly
+
+# if __name__ == "__main__":
+#     main()
