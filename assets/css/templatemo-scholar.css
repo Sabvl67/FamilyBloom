@@ -1022,6 +1022,7 @@ h2.accordion-header button {
   position: relative;
   padding: 120px 0px 80px 0px;
   overflow: hidden;
+  margin-bottom: 60px;
 }
 
 .achievements:before {
@@ -1071,6 +1072,42 @@ h2.accordion-header button {
   font-size: 15px;
   font-weight: 500;
   margin-top: 15px;
+}
+
+/* AI box */
+.chat-box {
+  position: relative;
+  padding: 120px 0px 80px 0px;
+  overflow: hidden;
+  margin-top: 60px; /* Space above the chat box */
+}
+
+/* Background Oval */
+.chat-box:before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0; /* Aligns to the right edge */
+  z-index: -1;
+  width: 95%; /* Adjust width to ensure it starts from the right */
+  height: 100%;
+  background-color: #7a6ad8; /* Purple background color */
+  content: '';
+  border-top-left-radius: 500px; /* Rounded corners on the left side */
+  border-bottom-left-radius: 500px; /* Rounded corners on the left side */
+}
+
+/* Background Image */
+.chat-box:after {
+  background: url(../images/contact-dec-01.png);
+  position: absolute;
+  right: 15%; /* Moves image 15% from the right edge */
+  opacity: 0.5;
+  top: 0;
+  width: 318px;
+  height: 119px;
+  content: '';
+  z-index: 2;
 }
 
 
@@ -1175,8 +1212,6 @@ h2.accordion-header button {
   opacity: 1;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
-
-
 
 .events .section-heading {
   margin-bottom: 100px;
@@ -1650,12 +1685,6 @@ body {
   }
   .achievements::before {
     width: 95%;
-  }
-  .team {
-    margin-top: 160px;
-  }
-  .team-member {
-    margin-bottom: 140px;
   }
   .comments {
     margin-top: -50px;
