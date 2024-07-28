@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Dashboard</title>
+    <title>Task Manager</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Family Dashboard</h1>
+        <h1>Task Manager</h1>
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -16,7 +16,8 @@
                 <li><a href="/tasks">Task Manager</a></li>
             </ul>
         </nav>
+        <div id="taskList"></div>
     </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tasks.js') }}"></script>
 </body>
 </html>
