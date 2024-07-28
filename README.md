@@ -1,6 +1,6 @@
 # AlbertaHealth
 Hackathon for AlbertaHealth
-Family Therapy App (FFT Integration)
+Family Bloom App (FFT Integration)
 
 ## Project Overview
 This project aims to integrate FFT (Functional Family Therapy) principles into a user-friendly application, enhancing family communication, conflict resolution, and overall well-being. The app will include features for scheduling appointments, tracking progress, and providing personalized support based on FFT methodologies.
