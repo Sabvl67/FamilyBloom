@@ -1,8 +1,7 @@
 import openai
 import os
 
-# Set your OpenAI API key here
-openai.api_key = 'API-key'
+openai.api_key = 'sk-proj-AscIZGoYnImyROVUW7sFT3BlbkFJkr32e5frGtBC2zNIqyYg'
 
 def generate_response(messages):
     try:

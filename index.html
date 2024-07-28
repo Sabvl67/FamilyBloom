@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Family Bloom</title>
+
+    <!-- Bootstrap -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> Bootstrap
+
+
+    <!-- Stylesheet: awesome, scholar, owl, animate, swiper -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/templatemo-scholar.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>    
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+  </head>
+
+<body>
+
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <a href="index.html" class="logo">
+                        <h1>Family Therapy</h1>
+                    </a>
+                    <!-- Search bar-->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                      <li class="scroll-to-section"><a href="#mood">Mood board</a></li>
+                      <li class="scroll-to-section"><a href="#tasks">Tasks</a></li>
+                      <li class="scroll-to-section"><a href="#feedback">Feedback</a></li>
+                      <li class="scroll-to-section"><a href="#achieve">Achievement</a></li>
+                      <li class="scroll-to-section"><a href="#courses">FFT</a></li>
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- * Menu End * -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+
+  <div class="main-banner" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-carousel owl-banner">
+            <div class="item item-1">
+              <div class="header-text">
+                <h2>Welcome to your personalized dashboard</h2>
+                <p>Naviagte your family's relationship with advices from professionals</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="#">Update status</a>
+                  </div>
+                  <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i> Schedule appointment</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section mood-us" id="mood">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-1">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  How're you feeling today?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <label for="moodRange">Mood:</label>
+                  <input type="range" id="moodRange" min="0" max="100" value="50" step="1" oninput="updateMoodLabel()">
+                  <span id="moodValue">50</span>
+                  <button onclick="submitMood()">Submit</button>
+                </div>                
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  How about some more details?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <input type="text" class="rounded-input" placeholder="Enter your feeling...">
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 align-self-center">
+          <div class="section-heading">
+            <h2>Mood Board</h2>
+            <p>Let out your mood for a better day!</p>
+            <div class="main-button">
+              <a href="#">Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tasks section" id="tasks">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="task-item">
+            <div class="icon">
+              <img src="assets/images/dishes.png">
+            </div>
+            <div class="main-content">
+              <h4>Clean the dishes</h4>
+              <div class="main-button">
+                <a href="#">Finish</a>
+                <a href="#">Defer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="task-item">
+            <div class="icon">
+              <img src="assets/images/dinner.png">
+            </div>
+            <div class="main-content">
+              <h4>Preapre for dinner</h4>
+              <div class="main-button">
+                <a href="#">Finish</a>
+                <a href="#">Defer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="task-item">
+            <div class="icon">
+              <img src="assets/images/dog.png">
+            </div>
+            <div class="main-content">
+              <h4>Walk the dogs</h4>
+              <div class="main-button">
+                <a href="#">Finish</a>
+                <a href="#">Defer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="section comments" id="feedback">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="owl-carousel owl-testimonials">
+            <div class="item">
+              <p>"I’ve noticed that you often get frustrated when things don’t go according to plan. I understand that you want everything to be perfect, but it sometimes feels like your frustration is directed at us. It would be helpful if you could talk about your feelings more openly instead of showing them through anger."</p>
+              <div class="author">
+                <img src="assets/images/testimonial-author.jpg" alt="">
+                <span class="category">Daughter</span>
+                <h4>Kate</h4>
+              </div>
+            </div>
+            <div class="item">
+              <p>"I love the hard work you put in for us. I just wish we could spend more quality time together. Finding a balance between work and family time would be great."</p>
+              <div class="author">
+                <img src="assets/images/testimonial-author.jpg" alt="">
+                <span class="category">Son</span>
+                <h4>Jimmy</h4>
+              </div>
+            </div>
+            <div class="item">
+              <p>"I value how dedicated you are to your work, but I feel a bit overwhelmed with household tasks. Sharing responsibilities more could help us both feel more supported."</p>
+              <div class="author">
+                <img src="assets/images/testimonial-author.jpg" alt="">
+                <span class="category">Wife</span>
+                <h4>Mariam</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 align-self-center">
+          <div class="section-heading">
+            <h6>Feedbacks</h6>
+            <h2>Feedback from Your family</h2>
+            <p>This feedback is intended to provide insight into how you might adjust and grow. Please remember that not all comments may be fully accurate or applicable, but they offer valuable perspectives.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section achievements" id="achieve">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="wrapper">
+            <div class="row">
+              <div class="col-lg-3 col-md-6">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="6" data-speed="1000"></h2>
+                   <p class="count-text style="font-size: large;">Milestone Badges</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="70" data-speed="1000"></h2>
+                  <p class="count-text " style="font-size: large;">Progress Charts</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="23" data-speed="1000"></h2>
+                  <p class="count-text style="font-size: large;">Positive Feedback</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="counter end">
+                  <h2 class="timer count-title count-number" data-to="15" data-speed="1000"></h2>
+                  <p class="count-text style="font-size: large;">Skills Acquired</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section courses" id="courses" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h6>Latest Courses</h6>
+            <h2>Family Functional Therapy</h2>
+          </div>
+        </div>
+      </div>
+      <ul class="event_filter">
+        <li>
+          <a class="is_active" href="#!" data-filter="*">Show All</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".design">Communication</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".development">Trust and Respect</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".wordpress">Supportive</a>
+        </li>
+      </ul>
+      <div class="row event_box">
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="assets/images/course-01.jpg" alt=""></a>
+              <span class="category">Communication</span>
+            </div>
+            <div class="down-content">
+              <span class="author">John Smith</span>
+              <h4>Learn Communication</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6  development">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="assets/images/course-02.jpg" alt=""></a>
+              <span class="category">Trust and Respect</span>
+            </div>
+            <div class="down-content">
+              <span class="author">Sarah Brown</span>
+              <h4>Trust and Respect</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 design wordpress">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="assets/images/course-03.jpg" alt=""></a>
+              <span class="category">Supportive</span>
+            </div>
+            <div class="down-content">
+              <span class="author">David Johnson</span>
+              <h4>Supportive Parents</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-us section" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6  align-self-center">
+          <div class="section-heading">
+            <h2>Share your story</h2>
+            <p>Carya provides barrier-free counselling tasks which are subsidized to ensure cost is never prohibitiv</p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="contact-us-content">
+            <form id="contact-form" action="" method="post">
+              <div class="row">
+                <div class="col-lg-12">
+                  <fieldset>
+                    <input type="name" name="name" id="name" placeholder="Your Concern...." autocomplete="on" required>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <form action="/submit-appointment" method="POST">
+                      <div class="form-group">
+                        <label for="appointment-date">Select Date:</label>
+                        <input type="date" id="appointment-date" name="appointment-date" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="appointment-time">Select Time:</label>
+                        <input type="time" id="appointment-time" name="appointment-time" required>
+                      </div>
+                      <button type="submit">Book Appointment</button>
+                    </form>
+                  </fieldset>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/counter.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+  </body>
+</html>
