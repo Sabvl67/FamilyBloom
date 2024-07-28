@@ -1,0 +1,110 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FFEEDD;
+    color: #333;
+}
+
+h1, h2, h3 {
+    color: #4a4a4a;
+    margin-bottom: 20px;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFD8BE;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input, form textarea, form select, form button {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Make the input and textarea shorter */
+form input[type="text"], form textarea {
+    width: 50%;
+}
+
+form input:focus, form textarea:focus, form select:focus {
+    outline: none;
+    border-color: #9381FF;
+    box-shadow: 0 0 8px rgba(147, 129, 255, 0.4);
+}
+
+form button {
+    background-color: #9381FF;
+    color: #F8F7FF;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding: 12px;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: #7460FF;
+    transform: translateY(-2px);
+}
+
+/* Mood Entries */
+.mood-entry {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.mood-entry h3 {
+    margin: 0 0 10px;
+    color: #4a4a4a;
+}
+
+.mood-entry p {
+    margin: 0;
+    color: #555;
+}
+
+.mood-entry .timestamp {
+    font-size: 0.9em;
+    color: #888;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin-top: 20px;
+    }
+
+    form input, form textarea, form select, form button {
+        font-size: 14px;
+    }
+
+    .mood-entry {
+        padding: 15px;
+    }
+}
