@@ -1,5 +1,7 @@
 import random
+from collections import deque
 
+# Mock data for family members
 family_members = [
     {'id': 1, 'name': 'Alice'},
     {'id': 2, 'name': 'Bob'},
@@ -7,6 +9,7 @@ family_members = [
     {'id': 4, 'name': 'Diana'}
 ]
 
+# Mock data for tasks
 tasks = [
     {'id': 1, 'description': 'Clean the house', 'status': 'Assigned', 'assignedTo': None},
     {'id': 2, 'description': 'Wash the dishes', 'status': 'Assigned', 'assignedTo': None},
@@ -16,8 +19,15 @@ tasks = [
     {'id': 6, 'description': 'Do laundry', 'status': 'Assigned', 'assignedTo': None},
     {'id': 7, 'description': 'Mow the lawn', 'status': 'Assigned', 'assignedTo': None},
     {'id': 8, 'description': 'Feed the pets', 'status': 'Assigned', 'assignedTo': None},
+    {'id': 9, 'description': 'Clean the windows', 'status': 'Assigned', 'assignedTo': None},
+    {'id': 10, 'description': 'Water the plants', 'status': 'Assigned', 'assignedTo': None}
 ]
 
+# Initialize task queue for transfers
+task_queue = deque(family_members)
+
+# Track additional tasks for each member
+additional_tasks = {member['id']: 0 for member in family_members}
 
 def distribute_tasks(tasks, family_members):
     num_members = len(family_members)
@@ -29,26 +39,41 @@ def distribute_tasks(tasks, family_members):
     for i, task in enumerate(tasks):
         member_id = family_members[i % num_members]['id']
         assignments[member_id].append(task['id'])
+        task['assignedTo'] = member_id
     
     # Handle extra tasks if any
     for i in range(extra_tasks):
         member_id = family_members[i]['id']
         assignments[member_id].append(tasks[len(tasks) - extra_tasks + i]['id'])
+        tasks[len(tasks) - extra_tasks + i]['assignedTo'] = member_id
 
-    # Update task assignments in the database
-    for member_id, task_ids in assignments.items():
-        update_task_assignment(member_id, task_ids)
+    return assignments
 
-#Tasks deferral
+# Tasks deferral
 def defer_task(task_id, member_id):
     # Mark the task as deferred
     update_task_status(task_id, 'Deferred')
     
-    # Get the list of tasks and members
-    tasks = get_tasks_for_member(member_id)
-    family_members = get_all_family_members()
-    
-    # Rebalance tasks
+    # Get the next member in the queue who is not the current member
+    while True:
+        next_member = task_queue.popleft()
+        if next_member['id'] != member_id:
+            task_queue.append(next_member)  # Move the member to the end of the queue
+            break
+        task_queue.append(next_member)  # Move the member to the end of the queue if same as deferring member
+
+    # Assign the deferred task to the next member
+    for task in tasks:
+        if task['id'] == task_id:
+            task['assignedTo'] = next_member['id']
+            task['status'] = 'Assigned'
+            break
+
+    # Track additional tasks for the member who deferred the task
+    additional_tasks[member_id] += 1
+    additional_tasks[next_member['id']] -= 1
+
+    # Rebalance tasks for the next week
     rebalance_tasks(family_members)
 
 def update_task_status(task_id, status):
@@ -70,62 +95,72 @@ def rebalance_tasks(family_members):
     for i, task in enumerate(pending_tasks):
         member_id = family_members[i % num_members]['id']
         assignments[member_id].append(task['id'])
+        task['assignedTo'] = member_id
     
     # Handle extra tasks if any
     for i in range(extra_tasks):
         member_id = family_members[i]['id']
         assignments[member_id].append(pending_tasks[len(pending_tasks) - extra_tasks + i]['id'])
+        pending_tasks[len(pending_tasks) - extra_tasks + i]['assignedTo'] = member_id
 
-    # Update task assignments in the database
-    for member_id, task_ids in assignments.items():
-        update_task_assignment(member_id, task_ids)
-
-def execute_query(query, params):
-    print(f"Executing query: {query} with params {params}")
-    # This function should handle executing the SQL query
-    # and commit changes to the database.
-    # pass
-
-def update_task_assignment(member_id, task_ids):
-    # This function updates the assignments in the database.
-    # Assumes task_ids is a list of task IDs to be assigned.
-    for task in tasks:
-        if task['id'] in task_ids:
-            task['assignedTo'] = member_id
-    print(f"Updated task assignments for member {member_id}: {task_ids}")
+    return assignments
 
 def get_all_tasks():
     return tasks
-    # This function should return all tasks from the database
-    # Assumed to return a list of task dictionaries
-    # pass
 
 def get_all_family_members():
     return family_members
-    # This function should return all family members from the database
-    # Assumed to return a list of member dictionaries
-    # pass
 
 def get_tasks_for_member(member_id):
     return [task for task in tasks if task['assignedTo'] == member_id]
-    # This function should return all tasks assigned to a specific member
-    # pass
+
+# Function to print the schedule
+def print_schedule(assignments):
+    for member_id, task_ids in assignments.items():
+        member_name = next((member['name'] for member in family_members if member['id'] == member_id), None)
+        task_descriptions = [task['description'] for task in tasks if task['id'] in task_ids]
+        print(f"\nSchedule for {member_name}:")
+        for task in task_descriptions:
+            print(f" - {task}")
 
 # Simulation Execution
 print("Initial Task Distribution")
 assignments = distribute_tasks(tasks, family_members)
+print_schedule(assignments)
 
 print("\nTasks before deferral:")
 for task in tasks:
     print(task)
 
-# Simulate deferring a task
-task_to_defer = random.choice([task['id'] for task in tasks if task['status'] == 'Assigned'])
-member_deferring_task = random.choice(family_members)['id']
+# Ask if there's a deferral
+deferral_needed = input("\nIs there a deferral needed? (yes/no): ").strip().lower()
 
-print(f"\nDeferring Task {task_to_defer} for Member {member_deferring_task}")
-defer_task(task_to_defer, member_deferring_task)
+if deferral_needed == 'yes':
+    member_name_deferring = input("Enter the name of the member who wants to defer a task: ").strip()
+    member_deferring_task = next((member['id'] for member in family_members if member['name'].lower() == member_name_deferring.lower()), None)
+    
+    if member_deferring_task is not None:
+        member_tasks = get_tasks_for_member(member_deferring_task)
+        print(f"\n{member_name_deferring}'s tasks:")
+        for task in member_tasks:
+            print(f"Task ID: {task['id']}, Description: {task['description']}")
+
+        task_to_defer = int(input("Enter the Task ID to defer: ").strip())
+        
+        if task_to_defer in [task['id'] for task in member_tasks]:
+            print(f"\nDeferring Task {task_to_defer} for Member {member_name_deferring}")
+            defer_task(task_to_defer, member_deferring_task)
+        else:
+            print("Invalid Task ID.")
+    else:
+        print("Invalid member name.")
+else:
+    print("No deferral needed.")
 
 print("\nTasks after deferral and rebalancing:")
 for task in tasks:
     print(task)
+
+print("\nUpdated Schedule after Deferral:")
+assignments = distribute_tasks([task for task in tasks if task['status'] == 'Assigned'], family_members)
+print_schedule(assignments)
